@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, TextAreaField, SubmitField, ValidationError
+from wtforms import StringField, SelectField, TextAreaField, SubmitField, ValidationError, PasswordField
 from wtforms.validators import Required,Email,EqualTo, Length
 from flask_wtf.file import FileAllowed, FileField
 from ..models import User, Comment
@@ -22,4 +22,8 @@ class UpdateProfile(FlaskForm):
         if email.data != current_user.email:
             user = User.query.filter_by(email = email.data).first()
             if user:
-                raise ValidationError('Email is already tak
+                raise ValidationError('Email is already taken.')
+class ResetPassword(FlaskForm):
+    password = PasswordField('Password', validators = [Required()])
+    confirm_password = PasswordField('Confirm Password', validators = [Required(), EqualTo('Password')])
+    submit = SubmitField('Reset Password')
