@@ -57,3 +57,21 @@ class User(UserMixin, db.Model):
         Defines how the user object will be constructed when the class is called
         '''
         return f'User{self.username}'
+class Blog(UserMixin, db.Model):
+
+    __tablename__ = 'blogs'
+
+    id  = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String)
+    body = db.Column(db.String)
+    postedDate = db.Column(db.DateTime, default = datetime.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    blog = db.relationship('Comment', backref = 'user_blog', lazy = 'dynamic')
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_blog(self):
+        db.session.delete(self)
+        db.session.commit()
