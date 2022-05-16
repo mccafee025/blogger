@@ -75,3 +75,28 @@ class Blog(UserMixin, db.Model):
     def delete_blog(self):
         db.session.delete(self)
         db.session.commit()
+class Comment(db.Model):
+
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key = True)
+    comment = db.Column(db.Text())
+    postedDate = db.Column(db.DateTime, default = datetime.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls, blog_id):
+        '''
+        Takes in blo and retrieves all comments for that blog
+        '''
+        comments = Comment.query.filter_by(blog_id = blog_id).all()
+        return comments
+
+    def delete_comment(self):
+        db.session.delete(self)
+        db.session.commit()
