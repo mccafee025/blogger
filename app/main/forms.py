@@ -27,3 +27,7 @@ class ResetPassword(FlaskForm):
     password = PasswordField('Password', validators = [Required()])
     confirm_password = PasswordField('Confirm Password', validators = [Required(), EqualTo('Password')])
     submit = SubmitField('Reset Password')
+    def validate_email(self, email):
+        user = User.query.filter_by(email = email.data).first()
+        if user is None:
+            raise ValidationError('Please register for an account')
