@@ -100,3 +100,8 @@ class Comment(db.Model):
     def delete_comment(self):
         db.session.delete(self)
         db.session.commit()
+class Quote:
+    def __init__(self,id,author,quote):
+        self.id = id
+        self.author = author
+        self.quote = quote
