@@ -31,3 +31,7 @@ class ResetPassword(FlaskForm):
         user = User.query.filter_by(email = email.data).first()
         if user is None:
             raise ValidationError('Please register for an account')
+class BlogForm(FlaskForm):
+    title = StringField('Title', validators = [Required()])
+    body = TextAreaField('Your blog here ', validators = [Required()])
+    submit = SubmitField('Post')
