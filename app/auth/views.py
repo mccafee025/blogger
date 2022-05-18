@@ -29,7 +29,7 @@ def register():
         db.session.commit()
         return redirect(url_for('auth/login.html'))
 
-    title = 'New Account || Dev Blog'
+    title = 'Blog App || Register'
     return render_template('auth/register.html', form = form, title = title)
 
 @auth.route('/logout')
