@@ -5,7 +5,7 @@ from app.models import User
 
 #Create manage instance
 app= create_app('test')
-app = create_app('development')
+app = create_app('production')
 
 #Create manage instance
 manager = Manager(app)
