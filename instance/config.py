@@ -1,2 +1,2 @@
-DATABASE_URL = 'postgresql+psycopg2://esa:moringa@localhost/blog'
+DATABASE_URL = 'postgresql+psycopg2://esagavin:moringa@localhost/blog'
 SECRET_KEY = 'choomba'
