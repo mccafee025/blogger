@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", Gotham Rounded, sans-serif;
+    background: #e6e6ff;
+}
+
+/* navigation bar */
+.navbar {
+    height: 70px;
+    background-color: #31383f;
+}
+
+.navbar-brand.h1 {
+    color: #fedd89;
+    font-size: 2em;
+    margin-left: 0.8em;
+}
+
+.navbar-brand.h1:hover {
+    color: #fedd89;
+    text-decoration: underline;
+}
+
+.nav-item.na-link{
+    color: #fedd89;
+    font-size: 1em;
+}
+
+/* Blog Styles */
+.t-bordered {
+    border-top: 1px solid #eaeaea;
+}
+.section-primary {
+    padding: 75px 0px;
+}
+section {
+    position: relative;
+}
+
+
+
+.blog-card .testimonial-image {
+    float: left;
+    margin: 0 20px 0 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.blog-card .card-content {
+    overflow: hidden;
+}
+
+.blog-card .meta {
+    position: relative;
+    overflow: hidden;
+    margin-left: 100px;
+}
+
+
+.blog-card .card-name {
+    display: block;
+}
+
+
+.blog-card .blog-card-col {
+    padding-bottom: 35px;
+}
+
+.blog-card .blog-card-col {
+    border-right-style: dashed;
+    border-right-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    border-right-color: #ddd;
+    border-bottom-color: #ddd;
+    padding: 25px;
+}
+
+.blog-card .blog-card-col:hover {
+   background-color:#f7f7f7;
+}
+
+.alternate-color .blog-card .blog-card-col:hover {
+   background-color:white;
+}
+
+.blog-card.blog-card--col-two .blog-card-col:nth-child(2n) {
+    border-right: none;
+}
+
+.blog-card.blog-card--col-two .blog-card-col:nth-last-child(-n+2),
+.blog-card.blog-card--col-two .blog-card-col:last-child {
+    border-bottom: none;
+}
+
+.blog-card.blog-card--col-three .blog-card-col:nth-child(3n) {
+    border-right: none;
+}
+
+.blog-card.blog-card--col-three .blog-card-col:nth-last-child(-n+3),
+.blog-card.blog-card--col-three .blog-card-col:nth-last-child(-n+2),
+.blog-card.blog-card--col-three .blog-card-col:last-child {
+    border-bottom: none;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+}

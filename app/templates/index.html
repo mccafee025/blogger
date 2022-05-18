@@ -1,0 +1,120 @@
+{% extends 'base.html'%}
+{% from 'macros.html' import displayQuote %}
+
+{% block content %}
+<div class="container">
+    {{ displayQuote(quotes) }}
+</div>
+
+<section class="section-primary t-bordered">
+    <div class="container shadow">
+        <div class="row blog-card blog-card--col-three">
+            {% for blog in blog %}
+            <div class="col-md-4 blog-card-col">
+                <div class="card-inner">
+                    <div class="testimonial-image" itemprop="image">
+                        <img width="180" height="180" src="{{ url_for('static', filename='photos/' + blog.user.image_file) }}">
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            {{ blog.body }}
+                        </p>
+                    </div>
+                    <div class="meta">
+                        <strong class="card-name" itemprop="name">{{ blog.user.username }}</strong>
+                        <span class="title" itemprop="jobTitle">{{ blog.postedDate.strftime('%Y-%m-%d') }}</span> – <a class="testimonial-link" href="{{ url_for('main.blog', blog_id = blog.id) }}" >{{ blog.title }}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<style>
+    .t-bordered {
+    border-top: 1px solid #eaeaea;
+}
+.section-primary {
+    padding: 75px 0px;
+}
+section {
+    position: relative;
+}
+
+
+
+.blog-card .testimonial-image {
+    float: left;
+    margin: 0 20px 0 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.blog-card .card-content {
+    overflow: hidden;
+}
+
+.blog-card .meta {
+    position: relative;
+    overflow: hidden;
+    margin-left: 100px;
+}
+
+
+.blog-card .card-name {
+    display: block;
+}
+
+
+.blog-card .blog-card-col {
+    padding-bottom: 35px;
+}
+
+.blog-card .blog-card-col {
+    border-right-style: dashed;
+    border-right-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    border-right-color: #ddd;
+    border-bottom-color: #ddd;
+    padding: 25px;
+}
+
+.blog-card .blog-card-col:hover {
+   background-color:#f7f7f7;
+}
+
+.alternate-color .blog-card .blog-card-col:hover {
+   background-color:white;
+}
+
+.blog-card.blog-card--col-two .blog-card-col:nth-child(2n) {
+    border-right: none;
+}
+
+.blog-card.blog-card--col-two .blog-card-col:nth-last-child(-n+2),
+.blog-card.blog-card--col-two .blog-card-col:last-child {
+    border-bottom: none;
+}
+
+.blog-card.blog-card--col-three .blog-card-col:nth-child(3n) {
+    border-right: none;
+}
+
+.blog-card.blog-card--col-three .blog-card-col:nth-last-child(-n+3),
+.blog-card.blog-card--col-three .blog-card-col:nth-last-child(-n+2),
+.blog-card.blog-card--col-three .blog-card-col:last-child {
+    border-bottom: none;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+</style>
+{% endblock %}

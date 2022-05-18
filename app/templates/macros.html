@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% macro displayQuote(quotes) %}
+<div class="row">
+    <div class="col-md-6 bq">
+        <img src="{{url_for('static', filename = 'photos/')}}" alt="" srcset="" height="300">
+    </div>
+
+    <div class="col-md-6 mx-auto bq">
+        <blockquote class="blockquote blockquote-custom p-5 shadow rounded w-100">
+            <div class="blockquote-custom-icon shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
+            <p class="mb-0 mt-2 font-italic">{{ quotes.quote }}.</p>
+            <footer class="blockquote-footer pt-4 mt-4 border-top">Quote by
+                <cite title="quote author">{{ quotes.author }}</cite>
+                <br>
+            </footer>
+
+        </blockquote>
+    </div>
+</div>
+
+<style>
+    .bq {
+        margin-top: .8em;
+        padding-top: 4.7em;
+    }
+
+    .blockquote-custom {
+        position: relative;
+        font-size: 1.1rem;
+        background-color: #fedd89;
+        width: 325px;
+    }
+
+
+    .blockquote-custom-icon {
+        width: 50px;
+        height: 50px;
+        background-color: #dd8ea4;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -25px;
+        left: 50px;
+    }
+
+    .active {
+        color: #f2e9eb;
+    }
+
+    .notactive {
+        color: #31383F;
+    }
+</style>
+
+{% endmacro %} 
+

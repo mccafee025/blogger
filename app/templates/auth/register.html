@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+<div class="container shadow sign">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 lon">
+            {{wtf.quick_form(form)}}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<style>
+    .sign {
+        margin-top: 10em;
+        background-color: #fedd89;
+        color: #31383f !important;
+        height: 500px;
+        border-radius: 10px;
+    }
+
+    .lon {
+        margin-top: 2em;
+    }
+</style>
+{% endblock %} 
+

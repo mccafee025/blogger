@@ -25,6 +25,7 @@ Jinja2==2.11.3
 Mako==1.1.5
 markdown2==2.4.1
 MarkupSafe==2.0.1
+Pillow==8.4.0
 psycopg2==2.9.1
 requests==2.26.0
 SQLAlchemy==1.4.26

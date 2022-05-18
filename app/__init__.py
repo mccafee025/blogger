@@ -47,6 +47,8 @@ def create_app(config_name):
     app.register_blueprint(auth_blueprint,url_prefix = '/auth')
 
     # setting config
+    from .requests import configure_request
+    configure_request(app)
 
 
     return app

@@ -27,7 +27,7 @@ def register():
         user = User(email = form.email.data, username = form.username.data, password = form.password.data)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('auth/login.html'))
+        return redirect(url_for('auth.login'))
 
     title = 'Blog App || Register'
     return render_template('auth/register.html', form = form, title = title)
