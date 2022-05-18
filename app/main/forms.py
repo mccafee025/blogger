@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, TextAreaField, SubmitField, ValidationError, PasswordField
 from wtforms.validators import Required,Email,EqualTo, Length
 from flask_wtf.file import FileAllowed, FileField
-from ..models import User, Comment
+from ..models import User
 from flask_login import current_user
 from flask.helpers import total_seconds
 
