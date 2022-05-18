@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% from 'comment.html' import displayComments as commentDisplay %}
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <ul class="list-unstyled">
+                    <!--FIRST LIST ITEM-->
+                    <li class="media"> <span class="round pt-2"><img src="{{ url_for('static', filename='photos/' + blog.user.image_file) }}" class="align-self-start mr-3"></span>
+                        <div class="media-body">
+                            <div class="row d-flex">
+                                <h6 class="user pt-2">{{ blog.user.username }}</h6>
+                                <div class="ml-auto">
+                                    <p class="text">{{ blog.postedDate.strftime('%d-%m-%Y') }}</p>
+                                </div>
+                            </div>
+                            <div class="images mt-2">
+                                <button class="btn btn-info btn-sm m-1" data-target="#commentModal" data-toggle="modal" type="button">
+                                    Comment
+                                </button>
+                                {% if blog.user == current_user %}
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1"
+                        href="{{ url_for('main.update_blog', blog_id = blog.id) }}">Update</a>
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">
+                        Delete
+                    </button>
+                    {% endif %}
+                        </div>
+                    </li>
+                    <!--SECOND LIST ITEM-->
+                    <li class="media my-5"> <span class="round"> <img src="https://img.icons8.com/bubbles/100/000000/lock-female-user.png" class="align-self-start mr-3"> </span>
+                        <div class="media-body">
+                            <div class="row d-flex">
+                                <div class="ml-auto">
+                                <h2 class="user">{{ blog.title }}</h2>
+                                <p class="text">{{ blog.body }}</p>
+                                </div>
+                            </div>
+                            <p class="text">New Comment</p>
+                            <div class="media mt-3 comment"> <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/lock-male-user.png" class="align-self-center mr-1"></a>
+                                <div class="media-body">
+                                    <p class="reply">{{commentDisplay(comments)}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete blog?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form action="{{ url_for('main.delete_blog', blog_id = blog.id) }}" method="blog">
+                    <input class="btn btn-danger" type="submit" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentModalTitle">Comment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="blog" action="{{url_for('main.comment',blog_id = blog.id)}}">
+                    <div class="form-group">
+                        <label for="title" class="col-form-label">Title:</label>
+                        <input type="text" class="form-control" id="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment" class="col-form-label">Comment:</label>
+                        <textarea class="form-control" id="comment" name="newcomment"></textarea>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Comment</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+body {
+    background-color: #F4F4F4 !important
+}
+
+h3 {
+    margin-top: 2%;
+    margin-left: 27%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold
+}
+
+.card {
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 40px
+}
+
+img {
+    border-radius: 10px;
+    padding-right: 5px;
+    width: 60px;
+    height: 55px
+}
+
+img:hover {
+    cursor: pointer
+}
+
+.round .align-self-start {
+    border-radius: 100%;
+    width: 45px;
+    height: 40px
+}
+
+.media .comment {
+    background: #F4F4F4;
+    border: none;
+    border-radius: 10px
+}
+
+h6.user {
+    color: #5C5C5C;
+    font-size: 15px !important;
+    padding-left: 15px !important;
+    margin-bottom: 0
+}
+
+h6.user:hover {
+    cursor: pointer;
+    text-decoration: underline
+}
+
+p.text {
+    margin-bottom: 0;
+    color: #8A8A8A !important;
+    font-size: 14px
+}
+
+.ml-auto {
+    margin-right: 10px
+}
+
+p .reply {
+    color: #5C5C5C;
+    font-size: 15px
+}
+
+@media screen and (min-width: 576px) {
+    .comment {
+        width: 470px !important
+    }
+}
+</style>
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% macro displayComments(comments) %}
+
+<div class="comments">
+
+    <h1 class="text">Comments</h1>
+
+    {% for comment in comments %}
+
+    <img class="rounded-circle article-img"
+
+        src="{{ url_for('static', filename='profile_pic/' + comment.user.image_file) }}">
+
+    <a class="mr-2 commentname" href="#">Comment by: {{ comment.author.username }}</a>
+
+    <p class="mt-10 mr-2 commentcomment">Comment: {{comment.comment}}</p>
+
+    {% endfor %}
+
+</div>
+
+
+
+
+<style>
+
+    .text {
+
+    margin-bottom: 0;
+
+    color: #8A8A8A !important;
+
+    font-size: 14px
+
+}
+
+</style>
+
+{% endmacro %} 
